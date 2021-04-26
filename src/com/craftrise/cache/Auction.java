@@ -15,7 +15,7 @@ public class Auction {
 	
 	public static void deleteOffer(int id) {
 		auction.remove(id);
-	}
+	} deneme
 	
 	public static AuctionData getAuction(int id) {
 		return auction.getOrDefault(id, null);
