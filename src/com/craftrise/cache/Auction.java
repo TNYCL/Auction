@@ -21,7 +21,7 @@ public class Auction {
 	
 	public static AuctionData getAuction(int id) {
 		return auction.getOrDefault(id, null);
-	}dsadasda
+	}
 	
 	public static Integer getLastAuctionId() {
 		return auction.lastKey();
