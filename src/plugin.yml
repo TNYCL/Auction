@@ -1,0 +1,6 @@
+name: CRAuction
+main: com.craftrise.Main
+version: 1.0.0
+commands:
+  ihale:
+    description: İhale Sistemi
