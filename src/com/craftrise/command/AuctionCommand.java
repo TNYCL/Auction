@@ -10,7 +10,7 @@ public class AuctionCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {
-			Player player = (Player) sender;
+			//Player player = (Player) sender;dfg
 			if(args.length == 0) {
 				
 			} else if(args[0].equalsIgnoreCase("aç")) {
