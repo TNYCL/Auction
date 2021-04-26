@@ -13,7 +13,7 @@ public class Auction {
 		auction.put(offerid, new AuctionData(owner, offerid, time, itemdata, price));
 	}
 	
-	public static void deleteOffer(int id) {s
+	public static void deleteOffer(int id) {
 		auction.remove(id);
 	}
 	
