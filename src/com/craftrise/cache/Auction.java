@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 public class Auction {
-	dsad
+	
 	public static TreeMap<Integer, AuctionData> auction = new TreeMap<>();
 	
 	public static void newOffer(String owner, float time, ItemStack itemdata, int price) {
