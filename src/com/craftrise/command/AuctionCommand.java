@@ -11,6 +11,7 @@ public class AuctionCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {
 			if(args.length == 0) {
+				
 			} else if(args[0].equalsIgnoreCase("aç")) {
 				
 			} else {
