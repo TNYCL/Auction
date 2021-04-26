@@ -4,8 +4,6 @@ import java.util.TreeMap;
 
 import org.bukkit.inventory.ItemStack;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-
 public class Auction {
 	
 	public static TreeMap<Integer, AuctionData> auction = new TreeMap<>();
