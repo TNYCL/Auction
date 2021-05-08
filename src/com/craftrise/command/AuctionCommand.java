@@ -14,12 +14,11 @@ public class AuctionCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {
-			Player player = (Player) sender;
 			if(args.length == 0) {
 				SubCommand.openAuctionHouse(player);
 			} else if(args[0].equalsIgnoreCase("yardim") || args[0].equalsIgnoreCase("help")) {
 				player.sendMessage(Message.COMMAND_INFO);
-			} else if(args[0].equalsIgnoreCase("baþlat") || args[0].equalsIgnoreCase("start")) {
+			} else if(args[0].equalsIgnoreCase("baÅŸlat") || args[0].equalsIgnoreCase("start")) {
 				if(args.length != 1) {
 					if(!Utils.isString(args[1])) {
 						if(args.length != 2) {
