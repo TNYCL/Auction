@@ -2,9 +2,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>CRAuction</groupId>
-	<artifactId>CRAuction</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>Auction</groupId>
+	<artifactId>Auction</artifactId>
+	<version>1</version>
 	<repositories>
 		<repository>
 			<id>spigot-repo</id>
