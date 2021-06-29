@@ -1,4 +1,4 @@
-package com.craftrise.mongo;
+package com.auction.mongo;
 
 import org.bson.Document;
 

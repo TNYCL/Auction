@@ -1,19 +1,19 @@
-package com.craftrise.data;
+package com.auction.data;
 
-import com.craftrise.util.ChatUtil;
+import com.auction.utils.UtilChat;
 
 public interface Message {
 	
 	String[] COMMAND_INFO = {
-		ChatUtil.color("&e&l           ------&6&l İhale &e&l------"),
+		UtilChat.color("&e&l           ------&6&l İhale &e&l------"),
 		"",
-		ChatUtil.color(" &6/ihale &f- &eİhalede satışa sunulan eşyalara gösterir."),
-		ChatUtil.color(" &6/ihale incele <satış numarası> &f- &eİhalede satışta ki bir ürünü koduyla açar."),
-		ChatUtil.color(" &6/ihale yönet &f- &eİhalede satışta olan bütün eşyalarınızı gösterir."),
-		ChatUtil.color(" &6/ihale arttır <satış numarası> <fiyat> &f- &eİhalede ki bir ürüne teklif verir."),
-		ChatUtil.color(" &6/ihale başlat <miktar> <fiyat> &f- &eElinizde ki eşyayı ihaleye çıkartır."),
+		UtilChat.color(" &6/ihale &f- &eİhalede satışa sunulan eşyalara gösterir."),
+		UtilChat.color(" &6/ihale incele <satış numarası> &f- &eİhalede satışta ki bir ürünü koduyla açar."),
+		UtilChat.color(" &6/ihale yönet &f- &eİhalede satışta olan bütün eşyalarınızı gösterir."),
+		UtilChat.color(" &6/ihale arttır <satış numarası> <fiyat> &f- &eİhalede ki bir ürüne teklif verir."),
+		UtilChat.color(" &6/ihale başlat <miktar> <fiyat> &f- &eElinizde ki eşyayı ihaleye çıkartır."),
 		"",
-		ChatUtil.color("&e&l           ------&6&l İhale &e&l------")
+		UtilChat.color("&e&l           ------&6&l İhale &e&l------")
 	};
 	String NOT_FOUND_AUCTION_ID = "&b%id% &cnumaralı bir ihale bulunamadı!";
 	String NOT_FOUND_AUCTION_USER = "&b%player% &cisimli oyuncuya ait bir ihale bulunamadı!";

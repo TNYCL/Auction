@@ -1,11 +1,11 @@
-package com.craftrise.cache;
+package com.auction.module;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.craftrise.data.Status;
+import com.auction.data.Status;
 
 public class Auction {
 

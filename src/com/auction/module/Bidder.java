@@ -1,4 +1,4 @@
-package com.craftrise.cache;
+package com.auction.module;
 
 public class Bidder {
 	

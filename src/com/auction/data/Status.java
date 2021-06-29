@@ -1,4 +1,4 @@
-package com.craftrise.data;
+package com.auction.data;
 
 public enum Status {
 	

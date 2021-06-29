@@ -1,13 +1,13 @@
-package com.craftrise.command;
+package com.auction.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.craftrise.data.Message;
-import com.craftrise.util.ChatUtil;
-import com.craftrise.util.Utils;
+import com.auction.data.Message;
+import com.auction.util.Utils;
+import com.auction.utils.UtilChat;
 
 public class AuctionCommand implements CommandExecutor {
 
@@ -26,13 +26,13 @@ public class AuctionCommand implements CommandExecutor {
 							if(!Utils.isString(args[2])) {
 								SubCommand.createAuction(player, Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 							} else {
-								ChatUtil.message(player, Message.ENTER_CORRECTLY_VALUE);
+								UtilChat.message(player, Message.ENTER_CORRECTLY_VALUE);
 							}
 						} else {
 							player.sendMessage(Message.COMMAND_INFO);
 						}
 					} else {
-						ChatUtil.message(player, Message.ENTER_CORRECTLY_VALUE);
+						UtilChat.message(player, Message.ENTER_CORRECTLY_VALUE);
 					}
 				} else {
 					player.sendMessage(Message.COMMAND_INFO);
@@ -40,7 +40,7 @@ public class AuctionCommand implements CommandExecutor {
 			} else if(args[0].equalsIgnoreCase("incele") || args[0].equalsIgnoreCase("show")) {
 				if(args.length != 1) {
 					if(Utils.isString(args[1])) {
-						ChatUtil.message(player, Message.AUCTION_ID_NOT_INTEGER);
+						UtilChat.message(player, Message.AUCTION_ID_NOT_INTEGER);
 					} else {
 						SubCommand.openAuctionFromId(player, Integer.parseInt(args[1]));
 					}

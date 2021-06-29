@@ -1,9 +1,9 @@
-package com.craftrise.util;
+package com.auction.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class ChatUtil {
+public class UtilChat {
 
 	public static String color(String msg) {
 		String message = ChatColor.translateAlternateColorCodes('&', msg);

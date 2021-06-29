@@ -1,4 +1,4 @@
-package com.craftrise.util;
+package com.auction.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +10,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.craftrise.Main;
-import com.craftrise.cache.Auction;
-import com.craftrise.cache.Bidder;
-import com.craftrise.data.Status;
-import com.craftrise.inventory.AuctionInventory;
-import com.craftrise.inventory.PagedData;
-import com.craftrise.inventory.PagedInventory;
-import com.craftrise.inventory.PagedItem;
+import com.auction.Main;
+import com.auction.data.Status;
+import com.auction.inventory.AuctionInventory;
+import com.auction.inventory.PagedData;
+import com.auction.inventory.PagedInventory;
+import com.auction.inventory.PagedItem;
+import com.auction.module.Auction;
+import com.auction.module.Bidder;
+import com.auction.util.Utils;
 
-public class InventoryUtil {
+public class UtilInventory {
 
 	public static void openStartedAuction(Player sender) {
 		List<Auction> data = Main.getSpring().getAllAuction();
@@ -29,14 +30,14 @@ public class InventoryUtil {
 				ItemStack items = new ItemStack(ItemStack.deserialize(auction.getItemData()));
 				ItemMeta itemsMeta = items.getItemMeta();
 				List<String> itemLore = new ArrayList<>();
-				itemLore.add(ChatUtil.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId()).toString()));
-				itemLore.add(ChatUtil.color("&eSatıcı: &a" + auction.getOwner()));
-				itemLore.add(ChatUtil.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
-				if(auction.getBidder().isEmpty()) itemLore.add(ChatUtil.color("&eSon teklif veren: &aYOK")); 
-				else itemLore.add(ChatUtil.color("&eSon teklif veren: &a" + auction.getLastBidder().getName()));
-				itemLore.add(ChatUtil.color("&eKalan süre: &a" + Utils.getTime(auction.getTime()) + " Dakika"));
+				itemLore.add(UtilChat.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId()).toString()));
+				itemLore.add(UtilChat.color("&eSatıcı: &a" + auction.getOwner()));
+				itemLore.add(UtilChat.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
+				if(auction.getBidder().isEmpty()) itemLore.add(UtilChat.color("&eSon teklif veren: &aYOK")); 
+				else itemLore.add(UtilChat.color("&eSon teklif veren: &a" + auction.getLastBidder().getName()));
+				itemLore.add(UtilChat.color("&eKalan süre: &a" + Utils.getTime(auction.getTime()) + " Dakika"));
 				itemLore.add("");
-				itemLore.add(ChatUtil.color("&eBilgi için &6TIKLA."));
+				itemLore.add(UtilChat.color("&eBilgi için &6TIKLA."));
 				itemsMeta.setLore(itemLore);
 				items.setItemMeta(itemsMeta);
 				itemlist.add(items);
@@ -45,12 +46,12 @@ public class InventoryUtil {
 		PagedInventory inventory = new PagedInventory(sender, 36, "İhale -> Devam eden", itemlist);
 		ItemStack history = new ItemStack(Material.BOOK);
 		ItemMeta historyMeta = history.getItemMeta();
-		historyMeta.setDisplayName(ChatUtil.color("&aİhale geçmişi"));
+		historyMeta.setDisplayName(UtilChat.color("&aİhale geçmişi"));
 		history.setItemMeta(historyMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-1, history));
 		ItemStack own = new ItemStack(Material.BOOK_AND_QUILL);
 		ItemMeta ownMeta = own.getItemMeta();
-		ownMeta.setDisplayName(ChatUtil.color("&aİhalelerim"));
+		ownMeta.setDisplayName(UtilChat.color("&aİhalelerim"));
 		own.setItemMeta(ownMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-9, own));
 		inventory.open();
@@ -65,13 +66,13 @@ public class InventoryUtil {
 			ItemStack items = new ItemStack(ItemStack.deserialize(auction.getItemData()));
 			ItemMeta itemsMeta = items.getItemMeta();
 			List<String> itemLore = new ArrayList<>();
-			itemLore.add(ChatUtil.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId())));
-			itemLore.add(ChatUtil.color("&eSatıcı: &a" + auction.getOwner()));
-			itemLore.add(ChatUtil.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
-			if(auction.getBidder().isEmpty()) itemLore.add(ChatUtil.color("&eSatın alan: &aYOK")); 
-			else itemLore.add(ChatUtil.color("&eSatın alan: &a" + auction.getLastBidder().getName()));
+			itemLore.add(UtilChat.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId())));
+			itemLore.add(UtilChat.color("&eSatıcı: &a" + auction.getOwner()));
+			itemLore.add(UtilChat.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
+			if(auction.getBidder().isEmpty()) itemLore.add(UtilChat.color("&eSatın alan: &aYOK")); 
+			else itemLore.add(UtilChat.color("&eSatın alan: &a" + auction.getLastBidder().getName()));
 			itemLore.add("");
-			itemLore.add(ChatUtil.color("&eBilgi için &6TIKLA."));
+			itemLore.add(UtilChat.color("&eBilgi için &6TIKLA."));
 			itemsMeta.setLore(itemLore);
 			items.setItemMeta(itemsMeta);
 			itemlist.add(items);
@@ -79,12 +80,12 @@ public class InventoryUtil {
 		PagedInventory inventory = new PagedInventory(sender, 36, "İhale -> Geçmiş", itemlist);
 		ItemStack history = new ItemStack(Material.BOOK);
 		ItemMeta historyMeta = history.getItemMeta();
-		historyMeta.setDisplayName(ChatUtil.color("&aDevam eden ihaleler"));
+		historyMeta.setDisplayName(UtilChat.color("&aDevam eden ihaleler"));
 		history.setItemMeta(historyMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-1, history));
 		ItemStack own = new ItemStack(Material.BOOK_AND_QUILL);
 		ItemMeta ownMeta = own.getItemMeta();
-		ownMeta.setDisplayName(ChatUtil.color("&aİhalelerim"));
+		ownMeta.setDisplayName(UtilChat.color("&aİhalelerim"));
 		own.setItemMeta(ownMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-9, own));
 		inventory.open();
@@ -100,13 +101,13 @@ public class InventoryUtil {
 				ItemStack items = new ItemStack(ItemStack.deserialize(auction.getItemData()));
 				ItemMeta itemsMeta = items.getItemMeta();
 				List<String> itemLore = new ArrayList<>();
-				itemLore.add(ChatUtil.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId())));
-				itemLore.add(ChatUtil.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
-				if(auction.getBidder().isEmpty()) itemLore.add(ChatUtil.color("&eSon teklif veren: &aYOK")); 
-				else itemLore.add(ChatUtil.color("&eSon teklif veren: &a" + auction.getLastBidder().getName()));
-				itemLore.add(ChatUtil.color("&eKalan süre: &a" + Utils.getTime(auction.getTime())  + " Dakika"));
+				itemLore.add(UtilChat.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId())));
+				itemLore.add(UtilChat.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
+				if(auction.getBidder().isEmpty()) itemLore.add(UtilChat.color("&eSon teklif veren: &aYOK")); 
+				else itemLore.add(UtilChat.color("&eSon teklif veren: &a" + auction.getLastBidder().getName()));
+				itemLore.add(UtilChat.color("&eKalan süre: &a" + Utils.getTime(auction.getTime())  + " Dakika"));
 				itemLore.add("");
-				itemLore.add(ChatUtil.color("&eBilgi için &6TIKLA."));
+				itemLore.add(UtilChat.color("&eBilgi için &6TIKLA."));
 				itemsMeta.setLore(itemLore);
 				items.setItemMeta(itemsMeta);
 				itemlist.add(items);
@@ -115,12 +116,12 @@ public class InventoryUtil {
 		PagedInventory inventory = new PagedInventory(sender, 36, "İhalelerim -> Devam eden", itemlist);
 		ItemStack history = new ItemStack(Material.BOOK);
 		ItemMeta historyMeta = history.getItemMeta();
-		historyMeta.setDisplayName(ChatUtil.color("&aİhale geçmişim"));
+		historyMeta.setDisplayName(UtilChat.color("&aİhale geçmişim"));
 		history.setItemMeta(historyMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-1, history));
 		ItemStack back = new ItemStack(Material.BARRIER);
 		ItemMeta backMeta = back.getItemMeta();
-		backMeta.setDisplayName(ChatUtil.color("&cGeri dön"));
+		backMeta.setDisplayName(UtilChat.color("&cGeri dön"));
 		back.setItemMeta(backMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-9, back));
 		inventory.open();
@@ -136,12 +137,12 @@ public class InventoryUtil {
 				ItemStack items = new ItemStack(ItemStack.deserialize(auction.getItemData()));
 				ItemMeta itemsMeta = items.getItemMeta();
 				List<String> itemLore = new ArrayList<>();
-				itemLore.add(ChatUtil.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId())));
-				itemLore.add(ChatUtil.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
-				if(auction.getBidder().isEmpty()) itemLore.add(ChatUtil.color("&eSatın alan: &aYOK")); 
-				else itemLore.add(ChatUtil.color("&eSatın alan: &a" + auction.getLastBidder().getName()));
+				itemLore.add(UtilChat.color("&eİhale numarası: &a" + String.valueOf(auction.getAuctionId())));
+				itemLore.add(UtilChat.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
+				if(auction.getBidder().isEmpty()) itemLore.add(UtilChat.color("&eSatın alan: &aYOK")); 
+				else itemLore.add(UtilChat.color("&eSatın alan: &a" + auction.getLastBidder().getName()));
 				itemLore.add("");
-				itemLore.add(ChatUtil.color("&eBilgi için &6TIKLA."));
+				itemLore.add(UtilChat.color("&eBilgi için &6TIKLA."));
 				itemsMeta.setLore(itemLore);
 				items.setItemMeta(itemsMeta);
 				itemlist.add(items);
@@ -150,12 +151,12 @@ public class InventoryUtil {
 		PagedInventory inventory = new PagedInventory(sender, 36, "İhalelerim -> Geçmiş", itemlist);
 		ItemStack started = new ItemStack(Material.BOOK);
 		ItemMeta startedMeta = started.getItemMeta();
-		startedMeta.setDisplayName(ChatUtil.color("&aDevam eden ihalelerim"));
+		startedMeta.setDisplayName(UtilChat.color("&aDevam eden ihalelerim"));
 		started.setItemMeta(startedMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-1, started));
 		ItemStack back = new ItemStack(Material.BARRIER);
 		ItemMeta backMeta = back.getItemMeta();
-		backMeta.setDisplayName(ChatUtil.color("&cGeri dön"));
+		backMeta.setDisplayName(UtilChat.color("&cGeri dön"));
 		back.setItemMeta(backMeta);
 		inventory.addCustomItem(new PagedItem(inventory.getSize()-9, back));
 		inventory.open();
@@ -169,26 +170,26 @@ public class InventoryUtil {
 		ItemMeta itemMeta = item.getItemMeta();
 		AuctionInventory.deleteData(sender);
 		List<String> itemLore = new ArrayList<>();
-		itemLore.add(ChatUtil.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
+		itemLore.add(UtilChat.color("&eFiyat: &a" + String.valueOf(auction.getPrice())));
 		itemLore.add("");
 		if(auction.getBidder().isEmpty()) {
-			itemLore.add(ChatUtil.color("&eSon teklif veren: &aYOK"));
+			itemLore.add(UtilChat.color("&eSon teklif veren: &aYOK"));
 		} else {
 			for(Bidder bidder : auction.getBidder()) {
-				itemLore.add(ChatUtil.color("&b" + bidder.getTime() + "&e - &a" + bidder.getName() + "&e -> &a" + bidder.getPrice()));
+				itemLore.add(UtilChat.color("&b" + bidder.getTime() + "&e - &a" + bidder.getName() + "&e -> &a" + bidder.getPrice()));
 			}
 		}
 		if(auction.getStatus() == Status.STARTED) {
 			if(auction.getOwner().equals(sender.getName())) {
 				ItemStack delete = new ItemStack(Material.REDSTONE_BLOCK);
 				ItemMeta deleteMeta = delete.getItemMeta();
-				deleteMeta.setDisplayName(ChatUtil.color("&cİhaleyi iptal et!"));
+				deleteMeta.setDisplayName(UtilChat.color("&cİhaleyi iptal et!"));
 				delete.setItemMeta(deleteMeta);
 				inventory.setItem(8, delete);
 			} else {
 				ItemStack bid500 = new ItemStack(Material.WOOL, 1, (byte) 5);
 				ItemMeta bid500Meta = bid500.getItemMeta();
-				bid500Meta.setDisplayName(ChatUtil.color("&aFiyatı arttır: &e500 dinar"));
+				bid500Meta.setDisplayName(UtilChat.color("&aFiyatı arttır: &e500 dinar"));
 				bid500.setItemMeta(bid500Meta);
 				inventory.setItem(8, bid500);
 			}
@@ -198,7 +199,7 @@ public class InventoryUtil {
 				if(auction.getBidder().size() == 0) {
 					ItemStack take = new ItemStack(Material.EMERALD);
 					ItemMeta takeMeta = take.getItemMeta();
-					takeMeta.setDisplayName(ChatUtil.color("&aEşyayı teslim al!"));
+					takeMeta.setDisplayName(UtilChat.color("&aEşyayı teslim al!"));
 					take.setItemMeta(takeMeta);
 					inventory.setItem(8, take);
 				}
@@ -208,14 +209,14 @@ public class InventoryUtil {
 			if(auction.getOwner().equals(sender.getName())) {
 				ItemStack take = new ItemStack(Material.REDSTONE);
 				ItemMeta takeMeta = take.getItemMeta();
-				takeMeta.setDisplayName(ChatUtil.color("&cBu eşyayı zaten teslim almışsın!"));
+				takeMeta.setDisplayName(UtilChat.color("&cBu eşyayı zaten teslim almışsın!"));
 				take.setItemMeta(takeMeta);
 				inventory.setItem(8, take);
 			}
 		}
 		ItemStack back = new ItemStack(Material.BARRIER);
 		ItemMeta backMeta = back.getItemMeta();
-		backMeta.setDisplayName(ChatUtil.color("&cİhale listesine geri dön"));
+		backMeta.setDisplayName(UtilChat.color("&cİhale listesine geri dön"));
 		back.setItemMeta(backMeta);
 		inventory.setItem(0, back);
 		AuctionInventory.addData(sender, new AuctionInventory(auction.getAuctionId(), auction.getPrice()));

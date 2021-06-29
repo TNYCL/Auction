@@ -1,14 +1,14 @@
-package com.craftrise.util;
+package com.auction.utils;
 
 import java.util.List;
 
 import org.bukkit.Bukkit;
 
-import com.craftrise.Main;
-import com.craftrise.cache.Auction;
-import com.craftrise.data.Status;
+import com.auction.Main;
+import com.auction.data.Status;
+import com.auction.module.Auction;
 
-public class TimerUtil {
+public class UtilTimer {
 	
 	@SuppressWarnings("deprecation")
 	public static void auctionTimer() {
@@ -19,11 +19,11 @@ public class TimerUtil {
 					if(auction.getStatus() == Status.STARTED) {
 						if(auction.getTime() == 1) {
 							auction.setStatus(Status.FINISHED);
-							DataUtil.updateAuction("auctionid", auction.getAuctionId(), "status", auction.getStatus());
+							UtilData.updateAuction("auctionid", auction.getAuctionId(), "status", auction.getStatus());
 						}
 						if(auction.getTime() != 1) {
 							auction.setTime(auction.getTime()-1);
-							DataUtil.updateAuction("auctionid", auction.getAuctionId(), "time", auction.getTime());
+							UtilData.updateAuction("auctionid", auction.getAuctionId(), "time", auction.getTime());
 						}
 					}
 				}

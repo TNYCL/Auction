@@ -1,4 +1,4 @@
-package com.craftrise.inventory;
+package com.auction.inventory;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package com.craftrise.listener;
+package com.auction.listener;
 
 import java.util.List;
 
@@ -12,18 +12,18 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.craftrise.Main;
-import com.craftrise.cache.Auction;
-import com.craftrise.cache.Bidder;
-import com.craftrise.data.Message;
-import com.craftrise.data.Status;
-import com.craftrise.inventory.AuctionInventory;
-import com.craftrise.inventory.PagedData;
-import com.craftrise.inventory.PagedInventory;
-import com.craftrise.util.ChatUtil;
-import com.craftrise.util.DataUtil;
-import com.craftrise.util.InventoryUtil;
-import com.craftrise.util.Utils;
+import com.auction.Main;
+import com.auction.data.Message;
+import com.auction.data.Status;
+import com.auction.inventory.AuctionInventory;
+import com.auction.inventory.PagedData;
+import com.auction.inventory.PagedInventory;
+import com.auction.module.Auction;
+import com.auction.module.Bidder;
+import com.auction.util.Utils;
+import com.auction.utils.UtilChat;
+import com.auction.utils.UtilData;
+import com.auction.utils.UtilInventory;
 
 public class AuctionListener implements Listener {
 	
@@ -38,27 +38,27 @@ public class AuctionListener implements Listener {
 		if(item.getType().equals(Material.BOOK)) {
 			// public
 			if(selectedItemName.equalsIgnoreCase("İhale geçmişi")) {
-				InventoryUtil.openFinishedAuction(player);
+				UtilInventory.openFinishedAuction(player);
 			}
 			if(selectedItemName.equalsIgnoreCase("Devam eden ihaleler")) {
-				InventoryUtil.openStartedAuction(player);
+				UtilInventory.openStartedAuction(player);
 			}
 			// private
 			if(selectedItemName.equalsIgnoreCase("İhale geçmişim")) {
-				InventoryUtil.openOwnAuctionHistory(player);
+				UtilInventory.openOwnAuctionHistory(player);
 			}
 			if(selectedItemName.equalsIgnoreCase("Devam eden ihalelerim")) {
-				InventoryUtil.openOwnAuction(player);
+				UtilInventory.openOwnAuction(player);
 			}
 		}
 		if(item.getType().equals(Material.BOOK_AND_QUILL)) {
 			if(selectedItemName.equalsIgnoreCase("İhalelerim")) {
-				InventoryUtil.openOwnAuction(player);
+				UtilInventory.openOwnAuction(player);
 			}
 		}
 		if(item.getType().equals(Material.BARRIER)) {
 			if(selectedItemName.equalsIgnoreCase("Geri dön")) {
-				InventoryUtil.openStartedAuction(player);
+				UtilInventory.openStartedAuction(player);
 			}
 		}
 	}
@@ -77,14 +77,14 @@ public class AuctionListener implements Listener {
 			if(itemLore == null) return;
 			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("İhale numarası: ", ""));
 			Auction auction = Main.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
-			InventoryUtil.openAuctionDetailsFromId(player, auction);
+			UtilInventory.openAuctionDetailsFromId(player, auction);
 			event.setCancelled(true);
 		}
 		if(inventoryName.equals("İhalelerim -> Devam eden") || inventoryName.equals("İhalelerim -> Geçmiş")) {
 			if(itemLore == null) return;
 			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("İhale numarası: ", ""));
 			Auction auction = Main.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
-			InventoryUtil.openAuctionDetailsFromId(player, auction);
+			UtilInventory.openAuctionDetailsFromId(player, auction);
 			event.setCancelled(true);
 		}
 		if(inventoryName.equals("İncele -> " + AuctionInventory.getData(player).getAuctionId())) {
@@ -96,18 +96,18 @@ public class AuctionListener implements Listener {
 			if(item.getType().equals(Material.WOOL)) {
 				if(auction.getStatus() == Status.FINISHED && auction.getStatus() == Status.TAKED) {
 					player.closeInventory();
-					ChatUtil.message(player, Message.ERROR);
+					UtilChat.message(player, Message.ERROR);
 					return;
 				}
 				if(selectedItemName.equalsIgnoreCase("Fiyatı arttır: 500 dinar")) {
 					auction.setPrice(auction.getPrice()+500);
 					Bidder bidder = new Bidder(player.getName(), auction.getPrice(), Utils.getTime(auction.getTime()));
 					auction.addLastBidder(bidder);
-					DataUtil.updateAuction("auctionid", auction.getAuctionId(), "price", auction.getPrice());
-					DataUtil.updateAuction("auctionid", auction.getAuctionId(), "lastbidder", auction.getBidder());
-					ChatUtil.message(player, Message.OFFER_BID.replace("%id%", String.valueOf(auction.getAuctionId()).replace("%price%", String.valueOf(auction.getPrice()))));
+					UtilData.updateAuction("auctionid", auction.getAuctionId(), "price", auction.getPrice());
+					UtilData.updateAuction("auctionid", auction.getAuctionId(), "lastbidder", auction.getBidder());
+					UtilChat.message(player, Message.OFFER_BID.replace("%id%", String.valueOf(auction.getAuctionId()).replace("%price%", String.valueOf(auction.getPrice()))));
 					if(Bukkit.getPlayer(auction.getOwner()) != null) {
-						ChatUtil.message(Bukkit.getPlayer(auction.getOwner()), Message.OFFER_BID_OWNER.replace("%id%", String.valueOf(auction.getAuctionId()).replace("%player%", player.getName()).replace("%price%", String.valueOf(auction.getPrice()))));
+						UtilChat.message(Bukkit.getPlayer(auction.getOwner()), Message.OFFER_BID_OWNER.replace("%id%", String.valueOf(auction.getAuctionId()).replace("%player%", player.getName()).replace("%price%", String.valueOf(auction.getPrice()))));
 					}
 				}
 				player.closeInventory();
@@ -122,7 +122,7 @@ public class AuctionListener implements Listener {
 			if(item.getType().equals(Material.REDSTONE_BLOCK)) {
 				if(auction.getStatus() != Status.STARTED) {
 					player.closeInventory();
-					ChatUtil.message(player, Message.ERROR);
+					UtilChat.message(player, Message.ERROR);
 					return;
 				}
 				if(selectedItemName.equalsIgnoreCase("İhaleyi iptal et!")) {

@@ -1,13 +1,13 @@
-package com.craftrise.util;
+package com.auction.utils;
 
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import com.craftrise.Main;
-import com.craftrise.cache.Auction;
+import com.auction.Main;
+import com.auction.module.Auction;
 
-public class DataUtil {
+public class UtilData {
 	
 	public static void setAuction(Auction auction) {
 		Main.getSpring().mongoTemplate().insert(auction);

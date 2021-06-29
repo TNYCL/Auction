@@ -1,4 +1,4 @@
-package com.craftrise.mongo;
+package com.auction.mongo;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import com.craftrise.cache.Auction;
+import com.auction.module.Auction;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 

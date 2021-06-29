@@ -1,12 +1,12 @@
-package com.craftrise;
+package com.auction;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.craftrise.command.AuctionCommand;
-import com.craftrise.listener.AuctionListener;
-import com.craftrise.mongo.Mongo;
-import com.craftrise.mongo.Spring;
-import com.craftrise.util.TimerUtil;
+import com.auction.command.AuctionCommand;
+import com.auction.listener.AuctionListener;
+import com.auction.mongo.Mongo;
+import com.auction.mongo.Spring;
+import com.auction.utils.UtilTimer;
 
 public class Main extends JavaPlugin {
 
@@ -21,7 +21,7 @@ public class Main extends JavaPlugin {
 		registerCommands();
 		registerListener();
 		System.out.println("["+getDescription().getName()+"] Aktif!");
-		TimerUtil.auctionTimer();
+		UtilTimer.auctionTimer();
 	}
 	
 	public void registerCommands() {
