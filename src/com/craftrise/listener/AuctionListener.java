@@ -37,14 +37,14 @@ public class AuctionListener implements Listener {
 		String selectedItemName = ChatColor.stripColor(itemMeta.getDisplayName());
 		if(item.getType().equals(Material.BOOK)) {
 			// public
-			if(selectedItemName.equalsIgnoreCase("Ýhale geçmiþi")) {
+			if(selectedItemName.equalsIgnoreCase("Ä°hale geÃ§miÅŸi")) {
 				InventoryUtil.openFinishedAuction(player);
 			}
 			if(selectedItemName.equalsIgnoreCase("Devam eden ihaleler")) {
 				InventoryUtil.openStartedAuction(player);
 			}
 			// private
-			if(selectedItemName.equalsIgnoreCase("Ýhale geçmiþim")) {
+			if(selectedItemName.equalsIgnoreCase("Ä°hale geÃ§miÅŸim")) {
 				InventoryUtil.openOwnAuctionHistory(player);
 			}
 			if(selectedItemName.equalsIgnoreCase("Devam eden ihalelerim")) {
@@ -52,12 +52,12 @@ public class AuctionListener implements Listener {
 			}
 		}
 		if(item.getType().equals(Material.BOOK_AND_QUILL)) {
-			if(selectedItemName.equalsIgnoreCase("Ýhalelerim")) {
+			if(selectedItemName.equalsIgnoreCase("Ä°halelerim")) {
 				InventoryUtil.openOwnAuction(player);
 			}
 		}
 		if(item.getType().equals(Material.BARRIER)) {
-			if(selectedItemName.equalsIgnoreCase("Geri dön")) {
+			if(selectedItemName.equalsIgnoreCase("Geri dÃ¶n")) {
 				InventoryUtil.openStartedAuction(player);
 			}
 		}
@@ -73,21 +73,21 @@ public class AuctionListener implements Listener {
 		String selectedItemName = ChatColor.stripColor(itemMeta.getDisplayName());
 		String inventoryName = event.getInventory().getName();
 		List<String> itemLore = itemMeta.getLore();
-		if(inventoryName.equals("Ýhale -> Devam eden") || inventoryName.equals("Ýhale -> Geçmiþ")) {
+		if(inventoryName.equals("Ä°hale -> Devam eden") || inventoryName.equals("Ä°hale -> GeÃ§miÅŸ")) {
 			if(itemLore == null) return;
-			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("Ýhale numarasý: ", ""));
+			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("Ä°hale numarasÄ±: ", ""));
 			Auction auction = Main.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
 			InventoryUtil.openAuctionDetailsFromId(player, auction);
 			event.setCancelled(true);
 		}
-		if(inventoryName.equals("Ýhalelerim -> Devam eden") || inventoryName.equals("Ýhalelerim -> Geçmiþ")) {
+		if(inventoryName.equals("Ä°halelerim -> Devam eden") || inventoryName.equals("Ä°halelerim -> GeÃ§miÅŸ")) {
 			if(itemLore == null) return;
-			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("Ýhale numarasý: ", ""));
+			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("Ä°hale numarasÄ±: ", ""));
 			Auction auction = Main.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
 			InventoryUtil.openAuctionDetailsFromId(player, auction);
 			event.setCancelled(true);
 		}
-		if(inventoryName.equals("Ýncele -> " + AuctionInventory.getData(player).getAuctionId())) {
+		if(inventoryName.equals("Ä°ncele -> " + AuctionInventory.getData(player).getAuctionId())) {
 			Auction auction = Main.getSpring().getAuctionData("auctionid", AuctionInventory.getData(player).getAuctionId());
 			event.setCancelled(true);
 			if(!event.getCurrentItem().getItemMeta().hasDisplayName()) {
@@ -99,7 +99,7 @@ public class AuctionListener implements Listener {
 					ChatUtil.message(player, Message.ERROR);
 					return;
 				}
-				if(selectedItemName.equalsIgnoreCase("Fiyatý arttýr: 500 dinar")) {
+				if(selectedItemName.equalsIgnoreCase("FiyatÄ± arttÄ±r: 500 dinar")) {
 					auction.setPrice(auction.getPrice()+500);
 					Bidder bidder = new Bidder(player.getName(), auction.getPrice(), Utils.getTime(auction.getTime()));
 					auction.addLastBidder(bidder);
@@ -114,7 +114,7 @@ public class AuctionListener implements Listener {
 				AuctionInventory.deleteData(player);
 			}
 			if(item.getType().equals(Material.BARRIER)) {
-				if(selectedItemName.equalsIgnoreCase("Ýhale listesine geri dön")) {
+				if(selectedItemName.equalsIgnoreCase("Ä°hale listesine geri dÃ¶n")) {
 					PagedInventory inventory = PagedData.getData(player);
 					inventory.open();
 				}
@@ -125,8 +125,8 @@ public class AuctionListener implements Listener {
 					ChatUtil.message(player, Message.ERROR);
 					return;
 				}
-				if(selectedItemName.equalsIgnoreCase("Ýhaleyi iptal et!")) {
-					PagedInventory inventory = PagedData.getData(player); // ihale iptal edildi yazýsý ekle ve datayý sil!
+				if(selectedItemName.equalsIgnoreCase("Ä°haleyi iptal et!")) {
+					PagedInventory inventory = PagedData.getData(player); // ihale iptal edildi yazï¿½sï¿½ ekle ve datayï¿½ sil!
 					inventory.open();
 				}
 			}

@@ -5,26 +5,26 @@ import com.craftrise.util.ChatUtil;
 public interface Message {
 	
 	String[] COMMAND_INFO = {
-		ChatUtil.color("&e&l           ------&6&l İhale &e&l------"),
+		ChatUtil.color("&e&l           ------&6&l Ä°hale &e&l------"),
 		"",
-		ChatUtil.color(" &6/ihale &f- &eİhalede satışa sunulan eşyaları gösterir."),
-		ChatUtil.color(" &6/ihale incele <satış numarası> &f- &eİhalede satışta ki bir ürünü koduyla açar."),
-		ChatUtil.color(" &6/ihale yönet &f- &eİhalede satışta olan bütün eşyalarınızı gösterir."),
-		ChatUtil.color(" &6/ihale arttır <satış numarası> <fiyat> &f- &eİhalede ki bir ürüne teklif verir."),
-		ChatUtil.color(" &6/ihale başlat <miktar> <fiyat> &f- &eElinizde ki eşyayı ihaleye çıkartır."),
+		ChatUtil.color(" &6/ihale &f- &eÄ°halede satÄ±ÅŸa sunulan eÅŸyalara gÃ¶sterir."),
+		ChatUtil.color(" &6/ihale incele <satÄ±ÅŸ numarasÄ±> &f- &eÄ°halede satÄ±ÅŸta ki bir Ã¼rÃ¼nÃ¼ koduyla aÃ§ar."),
+		ChatUtil.color(" &6/ihale yÃ¶net &f- &eÄ°halede satÄ±ÅŸta olan bÃ¼tÃ¼n eÅŸyalarÄ±nÄ±zÄ± gÃ¶sterir."),
+		ChatUtil.color(" &6/ihale arttÄ±r <satÄ±ÅŸ numarasÄ±> <fiyat> &f- &eÄ°halede ki bir Ã¼rÃ¼ne teklif verir."),
+		ChatUtil.color(" &6/ihale baÅŸlat <miktar> <fiyat> &f- &eElinizde ki eÅŸyayÄ± ihaleye Ã§Ä±kartÄ±r."),
 		"",
-		ChatUtil.color("&e&l           ------&6&l İhale &e&l------")
+		ChatUtil.color("&e&l           ------&6&l Ä°hale &e&l------")
 	};
-	String NOT_FOUND_AUCTION_ID = "&b%id% &cnumaralı bir ihale bulunamadı!";
-	String NOT_FOUND_AUCTION_USER = "&b%player% &cisimli oyuncuya ait bir ihale bulunamadı!";
-	String AUCTION_ID_NOT_INTEGER = "&cLütfen geçerli bir ihale numarası girin.";
-	String ENTER_CORRECTLY_VALUE = "&cLütfen geçerli bir değer girin.";
-	String AMOUNT_GREATER = "&cGirdiğiniz miktar sahip olduğunuz miktardan fazla olamaz! Toplamda: &b%amount% &cadete sahipsin.";
-	String AMOUNT_EQUALS_ZERO = "&cGirdiğiniz miktar sıfıra eşit olamaz.";
-	String NOT_FOUND_ITEM_IN_HAND = "&cElinde bir eşya olması gerekiyor.";
-	String OFFER_CREATED = "&b%id% &enumaralı ihaleyi &b%price% &efiyatıyla başlattınız.";
-	String OFFER_BID = "&b%id% &enumaralı ihaleye başarıyla teklif verildi. Teklifiniz: &b%price%";
-	String OFFER_BID_OWNER = "&b%id% &enumaralı ihalenize &b%player% &eisimli oyuncu teklif verdi. Verilen teklif: &b%price%";
-	String ERROR = "&cBir hata oluştu, lütfen tekrar deneyin.";
+	String NOT_FOUND_AUCTION_ID = "&b%id% &cnumaralÄ± bir ihale bulunamadÄ±!";
+	String NOT_FOUND_AUCTION_USER = "&b%player% &cisimli oyuncuya ait bir ihale bulunamadÄ±!";
+	String AUCTION_ID_NOT_INTEGER = "&cLÃ¼tfen geÃ§erli bir ihale numarasÄ± girin.";
+	String ENTER_CORRECTLY_VALUE = "&cLÃ¼tfen geÃ§erli bir deÄŸer girin.";
+	String AMOUNT_GREATER = "&cGirdiÄŸiniz miktar sahip olduÄŸunuz miktardan fazla olamaz! Toplamda: &b%amount% &cadete sahipsin.";
+	String AMOUNT_EQUALS_ZERO = "&cGirdiÄŸiniz miktar sÄ±fÄ±ra eÅŸit olamaz.";
+	String NOT_FOUND_ITEM_IN_HAND = "&cElinde bir eÅŸya olmasÄ± gerekiyor.";
+	String OFFER_CREATED = "&b%id% &enumaralÄ± ihaleyi &b%price% &efiyatÄ±yla baÅŸlattÄ±nÄ±z.";
+	String OFFER_BID = "&b%id% &enumaralÄ± ihaleye baÅŸarÄ±yla teklif verildi. Teklifiniz: &b%price%";
+	String OFFER_BID_OWNER = "&b%id% &enumaralÄ± ihalenize &b%player% &eisimli oyuncu teklif verdi. Verilen teklif: &b%price%";
+	String ERROR = "&cBir hata oluÅŸtu, lÃ¼tfen tekrar deneyin.";
 
 }

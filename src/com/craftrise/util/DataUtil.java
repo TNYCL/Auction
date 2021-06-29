@@ -6,11 +6,8 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import com.craftrise.Main;
 import com.craftrise.cache.Auction;
-import com.google.gson.Gson;
 
 public class DataUtil {
-	
-	public static Gson gson = new Gson();
 	
 	public static void setAuction(Auction auction) {
 		Main.getSpring().mongoTemplate().insert(auction);

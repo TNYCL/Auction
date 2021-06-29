@@ -50,6 +50,16 @@ public class Spring {
 		return mongoTemplate().findOne(Query.query(Criteria.where(key).is(value)), Auction.class);
 	}
 	
+	public List<Auction> getSelectedAuctionData(String key, Object value) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where(key).is(value));
+		return mongoTemplate().find(query, Auction.class);
+	}
+	
+	public List<Auction> getSelectedAuctionData(Query query) {
+		return mongoTemplate().find(query, Auction.class);
+	}
+	
 	public List<Auction> getAllAuction() {
 		return mongoTemplate().findAll(Auction.class);
 	}

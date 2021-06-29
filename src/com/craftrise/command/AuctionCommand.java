@@ -14,6 +14,7 @@ public class AuctionCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {
+			Player player = (Player) sender;
 			if(args.length == 0) {
 				SubCommand.openAuctionHouse(player);
 			} else if(args[0].equalsIgnoreCase("yardim") || args[0].equalsIgnoreCase("help")) {
