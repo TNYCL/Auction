@@ -10,7 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.auction.Main;
+import com.auction.Auction;
 import com.auction.data.Status;
 import com.auction.inventory.AuctionInventory;
 import com.auction.inventory.PagedData;
@@ -23,7 +23,7 @@ import com.auction.util.Utils;
 public class UtilInventory {
 
 	public static void openStartedAuction(Player sender) {
-		List<Auction> data = Main.getSpring().getAllAuction();
+		List<Auction> data = Auction.getSpring().getAllAuction();
 		List<ItemStack> itemlist = new ArrayList<>();
 		for(Auction auction : data) {
 			if(auction.getStatus() == Status.STARTED) {
@@ -60,7 +60,7 @@ public class UtilInventory {
 	}
 	
 	public static void openFinishedAuction(Player sender) {
-		List<Auction> data = Main.getSpring().getSelectedAuctionData("time", 1);
+		List<Auction> data = Auction.getSpring().getSelectedAuctionData("time", 1);
 		List<ItemStack> itemlist = new ArrayList<>();
 		for(Auction auction : data) {
 			ItemStack items = new ItemStack(ItemStack.deserialize(auction.getItemData()));
@@ -94,7 +94,7 @@ public class UtilInventory {
 	}
 	
 	public static void openOwnAuction(Player sender) {
-		List<Auction> data = Main.getSpring().getSelectedAuctionData("owner", sender.getName());
+		List<Auction> data = Auction.getSpring().getSelectedAuctionData("owner", sender.getName());
 		List<ItemStack> itemlist = new ArrayList<>();
 		for(Auction auction : data) {
 			if(auction.getStatus() == Status.STARTED) {
@@ -130,7 +130,7 @@ public class UtilInventory {
 	}
 	
 	public static void openOwnAuctionHistory(Player sender) {
-		List<Auction> data = Main.getSpring().getSelectedAuctionData("owner", sender.getName());
+		List<Auction> data = Auction.getSpring().getSelectedAuctionData("owner", sender.getName());
 		List<ItemStack> itemlist = new ArrayList<>();
 		for(Auction auction : data) {
 			if(auction.getStatus() == Status.FINISHED || auction.getStatus() == Status.TAKED) {

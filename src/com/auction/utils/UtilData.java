@@ -4,13 +4,13 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import com.auction.Main;
+import com.auction.Auction;
 import com.auction.module.Auction;
 
 public class UtilData {
 	
 	public static void setAuction(Auction auction) {
-		Main.getSpring().mongoTemplate().insert(auction);
+		Auction.getSpring().mongoTemplate().insert(auction);
 	}
 	
 	public static void updateAuction(String where, Object is, String key, Object value) {
@@ -18,7 +18,7 @@ public class UtilData {
 		query.addCriteria(Criteria.where(where).is(is));
 		Update update = new Update();
 		update.set(key, value);
-		Main.getSpring().mongoTemplate().updateFirst(query, update, Auction.class);
+		Auction.getSpring().mongoTemplate().updateFirst(query, update, Auction.class);
 	}
 	
 }

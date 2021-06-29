@@ -3,7 +3,7 @@ package com.auction.command;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import com.auction.Main;
+import com.auction.Auction;
 import com.auction.data.Message;
 import com.auction.module.Auction;
 import com.auction.util.Utils;
@@ -26,7 +26,7 @@ public class SubCommand {
 			UtilChat.message(sender, Message.NOT_FOUND_AUCTION_ID.replace("%id%", String.valueOf(auctionid)));
 			return;
 		}
-		Auction data = Main.getSpring().getAuctionData("auctionid", auctionid);
+		Auction data = Auction.getSpring().getAuctionData("auctionid", auctionid);
 		UtilInventory.openAuctionDetailsFromId(sender, data);
 	}
 	

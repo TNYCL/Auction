@@ -12,7 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.auction.Main;
+import com.auction.Auction;
 import com.auction.data.Message;
 import com.auction.data.Status;
 import com.auction.inventory.AuctionInventory;
@@ -76,19 +76,19 @@ public class AuctionListener implements Listener {
 		if(inventoryName.equals("İhale -> Devam eden") || inventoryName.equals("İhale -> Geçmiş")) {
 			if(itemLore == null) return;
 			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("İhale numarası: ", ""));
-			Auction auction = Main.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
+			Auction auction = Auction.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
 			UtilInventory.openAuctionDetailsFromId(player, auction);
 			event.setCancelled(true);
 		}
 		if(inventoryName.equals("İhalelerim -> Devam eden") || inventoryName.equals("İhalelerim -> Geçmiş")) {
 			if(itemLore == null) return;
 			String auctionid = ChatColor.stripColor(itemLore.get(0).replace("İhale numarası: ", ""));
-			Auction auction = Main.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
+			Auction auction = Auction.getSpring().getAuctionData("auctionid", Integer.parseInt(auctionid));
 			UtilInventory.openAuctionDetailsFromId(player, auction);
 			event.setCancelled(true);
 		}
 		if(inventoryName.equals("İncele -> " + AuctionInventory.getData(player).getAuctionId())) {
-			Auction auction = Main.getSpring().getAuctionData("auctionid", AuctionInventory.getData(player).getAuctionId());
+			Auction auction = Auction.getSpring().getAuctionData("auctionid", AuctionInventory.getData(player).getAuctionId());
 			event.setCancelled(true);
 			if(!event.getCurrentItem().getItemMeta().hasDisplayName()) {
 				return;

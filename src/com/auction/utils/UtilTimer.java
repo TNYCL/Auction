@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 
-import com.auction.Main;
+import com.auction.Auction;
 import com.auction.data.Status;
 import com.auction.module.Auction;
 
@@ -12,9 +12,9 @@ public class UtilTimer {
 	
 	@SuppressWarnings("deprecation")
 	public static void auctionTimer() {
-		Bukkit.getScheduler().scheduleAsyncRepeatingTask(Main.getInstance(), new Runnable() {
+		Bukkit.getScheduler().scheduleAsyncRepeatingTask(Auction.getInstance(), new Runnable() {
 			public void run() {
-				List<Auction> data = Main.getSpring().getAllAuction();
+				List<Auction> data = Auction.getSpring().getAllAuction();
 				for(Auction auction : data) {
 					if(auction.getStatus() == Status.STARTED) {
 						if(auction.getTime() == 1) {

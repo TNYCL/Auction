@@ -8,9 +8,9 @@ import com.auction.mongo.Mongo;
 import com.auction.mongo.Spring;
 import com.auction.utils.UtilTimer;
 
-public class Main extends JavaPlugin {
+public class Auction extends JavaPlugin {
 
-	private static Main instance;
+	private static Auction instance;
 	private static Mongo mongo;
 	private static Spring spring;
 	
@@ -32,7 +32,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new AuctionListener(), this);
 	}
 	
-	public static Main getInstance() {
+	public static Auction getInstance() {
 		return instance;
 	}
 	
